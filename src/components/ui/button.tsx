@@ -15,6 +15,10 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // Luxury Kerala Sarees variants
+        luxury: "bg-gradient-luxury text-white hover:opacity-90 shadow-luxury transition-all duration-300",
+        gold: "bg-gradient-gold text-primary hover:opacity-90 shadow-gold transition-all duration-300",
+        elegant: "bg-luxury-maroon text-luxury-ivory border border-luxury-gold hover:bg-luxury-gold hover:text-luxury-maroon transition-all duration-300",
       },
       size: {
         default: "h-10 px-4 py-2",
