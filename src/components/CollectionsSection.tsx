@@ -1,30 +1,33 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
-import collection1 from "@/assets/collection-1.jpg";
-import collection2 from "@/assets/collection-2.jpg";
-import collection3 from "@/assets/collection-3.jpg";
+import whiteTraditional from "@/assets/white-traditional.jpg";
+import whiteBridal from "@/assets/white-bridal.jpg";
+import whiteFestive from "@/assets/white-festive.jpg";
 
 const collections = [
   {
     id: 1,
-    title: "Traditional Collections",
-    description: "Timeless designs with authentic Kerala patterns and golden kasavu borders",
-    image: collection1,
-    category: "Traditional"
+    title: "Traditional White",
+    description: "Pure white Kerala sarees with authentic golden kasavu borders, perfect for traditional occasions",
+    image: whiteTraditional,
+    category: "Traditional",
+    price: "₹15,000 - ₹25,000"
   },
   {
     id: 2,
-    title: "Bridal Elegance",
-    description: "Luxurious bridal sarees with heavy zari work and intricate embroidery",
-    image: collection2,
-    category: "Bridal"
+    title: "Bridal White",
+    description: "Exquisite white bridal sarees with heavy zari work and intricate golden embroidery",
+    image: whiteBridal,
+    category: "Bridal",
+    price: "₹35,000 - ₹75,000"
   },
   {
     id: 3,
-    title: "Festive Celebrations",
-    description: "Rich colors and elaborate designs perfect for special occasions",
-    image: collection3,
-    category: "Festive"
+    title: "Festive White",
+    description: "Elegant white festive sarees with temple borders and golden thread work",
+    image: whiteFestive,
+    category: "Festive",
+    price: "₹20,000 - ₹40,000"
   },
 ];
 
@@ -37,11 +40,11 @@ const CollectionsSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="font-luxury text-4xl md:text-5xl font-bold text-primary mb-6">
-            Our Collections
+            Pure White Kerala Sarees
           </h2>
           <p className="font-inter text-lg text-muted-foreground max-w-2xl mx-auto">
-            Discover our exquisite range of Kerala sarees, each piece crafted with
-            meticulous attention to detail and traditional artistry.
+            Discover our exclusive collection of pristine white Kerala sarees, where
+            tradition meets timeless elegance in every golden thread.
           </p>
         </div>
 
@@ -66,6 +69,11 @@ const CollectionsSection = () => {
                 <div className="absolute top-4 left-4 bg-luxury-gold text-primary px-3 py-1 rounded-full text-sm font-inter font-semibold">
                   {collection.category}
                 </div>
+                
+                {/* Price Tag */}
+                <div className="absolute top-4 right-4 bg-white/90 text-primary px-3 py-1 rounded-full text-sm font-inter font-semibold">
+                  {collection.price}
+                </div>
 
                 {/* Hover Content */}
                 <div 
@@ -77,9 +85,17 @@ const CollectionsSection = () => {
                     <h3 className="font-luxury text-2xl font-bold mb-2">
                       {collection.title}
                     </h3>
-                    <p className="font-inter text-white/90">
+                    <p className="font-inter text-white/90 mb-3">
                       {collection.description}
                     </p>
+                    <div className="flex items-center justify-between">
+                      <span className="font-inter text-luxury-gold font-semibold">
+                        {collection.price}
+                      </span>
+                      <button className="bg-luxury-gold text-primary px-4 py-2 rounded-full text-sm font-inter font-semibold hover:bg-luxury-gold/90 transition-colors">
+                        Inquire Now
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -93,9 +109,20 @@ const CollectionsSection = () => {
                 <h3 className="font-luxury text-2xl font-bold text-primary mb-3">
                   {collection.title}
                 </h3>
-                <p className="font-inter text-muted-foreground">
+                <p className="font-inter text-muted-foreground mb-3">
                   {collection.description}
                 </p>
+                <div className="flex items-center justify-between">
+                  <span className="font-inter text-primary font-semibold">
+                    {collection.price}
+                  </span>
+                  <button 
+                    onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                    className="bg-gradient-gold text-primary px-4 py-2 rounded-full text-sm font-inter font-semibold hover:bg-luxury-gold transition-colors shadow-gold"
+                  >
+                    Inquire Now
+                  </button>
+                </div>
               </div>
             </Card>
           ))}
@@ -104,7 +131,7 @@ const CollectionsSection = () => {
         {/* Call to Action */}
         <div className="text-center mt-12">
           <p className="font-inter text-lg text-muted-foreground mb-6">
-            Each saree tells a story of Kerala's rich textile heritage
+            Each white saree embodies the purity and elegance of Kerala's textile tradition
           </p>
           <div className="w-24 h-px bg-gradient-gold mx-auto" />
         </div>

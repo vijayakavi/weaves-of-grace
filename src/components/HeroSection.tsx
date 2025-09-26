@@ -45,11 +45,11 @@ const HeroSection = () => {
         <h1 className="font-luxury text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
           Grace of Kerala,
           <br />
-          <span className="text-luxury-gold-light">Woven in Tradition</span>
+          <span className="text-luxury-gold-light">Pure White Elegance</span>
         </h1>
         <p className="font-inter text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
-          Discover the timeless elegance of authentic Kerala sarees, crafted with
-          heritage techniques and adorned with exquisite golden threads.
+          Discover the pristine beauty of authentic white Kerala sarees, where traditional
+          craftsmanship meets timeless elegance in pure golden threads.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button
@@ -57,7 +57,7 @@ const HeroSection = () => {
             size="lg"
             className="bg-luxury-gold hover:bg-luxury-gold/90 text-primary font-inter font-semibold px-8 py-4 text-lg shadow-gold"
           >
-            Explore Collections
+            Explore White Collection
           </Button>
           <Button
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}

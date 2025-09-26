@@ -3,15 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Send, ShoppingBag } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    message: ""
+    message: "",
+    inquiryType: "general"
   });
   const { toast } = useToast();
 
@@ -34,7 +36,7 @@ const ContactSection = () => {
     });
     
     // Reset form
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    setFormData({ name: "", email: "", phone: "", message: "", inquiryType: "general" });
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -47,11 +49,11 @@ const ContactSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="font-luxury text-4xl md:text-5xl font-bold text-primary mb-6">
-            Get in Touch
+            Purchase Inquiry & Contact
           </h2>
           <p className="font-inter text-lg text-muted-foreground max-w-2xl mx-auto">
-            Ready to find your perfect Kerala saree? We're here to help you discover
-            the elegance that suits your style.
+            Ready to own a beautiful white Kerala saree? Send us your inquiry and we'll
+            help you find the perfect piece for your special occasion.
           </p>
         </div>
 
@@ -115,7 +117,34 @@ const ContactSection = () => {
 
           {/* Contact Form */}
           <Card className="p-8 bg-card border-0 shadow-luxury">
+            <div className="mb-6">
+              <h3 className="font-luxury text-2xl font-bold text-primary mb-2 flex items-center">
+                <ShoppingBag className="h-6 w-6 mr-2" />
+                Purchase Inquiry Form
+              </h3>
+              <p className="font-inter text-muted-foreground">
+                Fill out the form below and we'll respond within 24 hours with pricing, availability, and customization options.
+              </p>
+            </div>
+            
             <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <Select
+                  value={formData.inquiryType}
+                  onValueChange={(value) => handleInputChange("inquiryType", value)}
+                >
+                  <SelectTrigger className="bg-background border-border focus:border-luxury-gold">
+                    <SelectValue placeholder="Select inquiry type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="general">General Inquiry</SelectItem>
+                    <SelectItem value="purchase">Purchase Inquiry</SelectItem>
+                    <SelectItem value="custom">Custom Order</SelectItem>
+                    <SelectItem value="bulk">Bulk Order</SelectItem>
+                    <SelectItem value="bridal">Bridal Package</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
               <div>
                 <Input
                   placeholder="Your Name *"
@@ -149,7 +178,7 @@ const ContactSection = () => {
 
               <div>
                 <Textarea
-                  placeholder="Tell us about your saree preferences, occasion, or any questions you have..."
+                  placeholder="Tell us about your preferences: Which saree caught your eye? What's the occasion? Any specific requirements for size, customization, or delivery timeline..."
                   value={formData.message}
                   onChange={(e) => handleInputChange("message", e.target.value)}
                   className="min-h-32 bg-background border-border focus:border-luxury-gold resize-none"
@@ -163,8 +192,14 @@ const ContactSection = () => {
                 className="w-full bg-gradient-gold hover:bg-luxury-gold text-primary font-inter font-semibold py-4 shadow-gold"
               >
                 <Send className="h-5 w-5 mr-2" />
-                Send Message
+                Send Purchase Inquiry
               </Button>
+              
+              <div className="text-center">
+                <p className="font-inter text-sm text-muted-foreground">
+                  🔒 Your inquiry is secure and confidential. We'll respond with detailed pricing and availability within 24 hours.
+                </p>
+              </div>
             </form>
           </Card>
         </div>
