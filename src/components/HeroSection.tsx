@@ -2,9 +2,14 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import heroSaree from "@/assets/hero-saree.jpg";
+import { useBackgroundParallax, useLuxuryParallax } from "../hooks/useParallax";
 
 const HeroSection = () => {
   const [scrollY, setScrollY] = useState(0);
+  
+  // Parallax refs
+  const backgroundRef = useBackgroundParallax(0.5);
+  const contentRef = useLuxuryParallax({ speed: 0.2, direction: 'up', opacity: true });
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -26,11 +31,8 @@ const HeroSection = () => {
     >
       {/* Parallax Background */}
       <div
+        ref={backgroundRef}
         className="absolute inset-0 w-full h-full"
-        style={{
-          transform: `translateY(${scrollY * 0.5}px)`,
-          willChange: "transform",
-        }}
       >
         <img
           src={heroSaree}
@@ -41,7 +43,7 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <div ref={contentRef} className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <h1 className="font-luxury text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
           Grace of Kerala,
           <br />

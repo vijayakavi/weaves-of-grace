@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Heart, ShoppingCart, Eye } from "lucide-react";
+import { useBackgroundParallax, useLuxuryParallax } from "../hooks/useParallax";
 import whiteProduct1 from "@/assets/white-product-1.jpg";
 import whiteProduct2 from "@/assets/white-product-2.jpg";
 import whiteProduct3 from "@/assets/white-product-3.jpg";
@@ -75,6 +76,11 @@ const products = [
 
 const ProductsSection = () => {
   const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
+  
+  // Parallax refs
+  const backgroundRef = useBackgroundParallax(0.2);
+  const headerRef = useLuxuryParallax({ speed: 0.1, direction: 'up', opacity: true });
+  const productsRef = useLuxuryParallax({ speed: 0.15, direction: 'up', scale: 1.02 });
 
   const handleInquire = (productName: string) => {
     const contactSection = document.getElementById("contact");
@@ -92,10 +98,22 @@ const ProductsSection = () => {
   };
 
   return (
-    <section id="products" className="py-20 bg-background">
-      <div className="container mx-auto px-6">
+    <section id="products" className="py-20 bg-background relative overflow-hidden">
+      {/* Parallax Background */}
+      <div 
+        ref={backgroundRef}
+        className="absolute inset-0 w-full h-full opacity-5"
+        style={{
+          background: `
+            radial-gradient(circle at 30% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 70% 80%, rgba(139, 69, 19, 0.08) 0%, transparent 50%)
+          `,
+        }}
+      />
+      
+      <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div ref={headerRef} className="text-center mb-16">
           <h2 className="font-luxury text-4xl md:text-5xl font-bold text-primary mb-6">
             Our White Saree Collection
           </h2>
@@ -106,7 +124,7 @@ const ProductsSection = () => {
         </div>
 
         {/* Products Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={productsRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((product) => (
             <Card
               key={product.id}
